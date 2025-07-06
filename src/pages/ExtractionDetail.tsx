@@ -29,18 +29,18 @@ export function ExtractionDetail() {
   if (!extraction) return <ErrorState error={new Error('Extraction not found')} />;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 animate-fade-in">
       <div className="flex justify-between items-start">
-        <div>
-          <h1 className="text-3xl font-bold">Extraction {extraction.extraction_id}</h1>
-          <p className="text-muted-foreground mt-1">
+        <div className="space-y-3">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">Extraction {extraction.extraction_id}</h1>
+          <p className="text-muted-foreground text-lg">
             Created {formatDistanceToNow(new Date(extraction.created_at), { addSuffix: true })}
           </p>
         </div>
         
-        <div className="flex gap-2">
+        <div className="flex gap-3">
           {extraction.value_map && (
-            <Button asChild>
+            <Button asChild className="bg-gradient-primary hover:shadow-lg transition-all duration-200 hover:scale-105">
               <Link to={`/customers/${customerId}/extractions/${extractionId}/value-map`}>
                 <BarChart3 className="h-4 w-4 mr-2" />
                 View Value Map

@@ -34,20 +34,22 @@ export function ValueMapView() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 animate-fade-in">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold flex items-center space-x-2">
-            <BarChart3 className="h-8 w-8 text-primary" />
-            <span>Value Map</span>
+        <div className="space-y-3">
+          <h1 className="text-4xl font-bold flex items-center space-x-3">
+            <div className="p-2 rounded-full bg-primary/10">
+              <BarChart3 className="h-8 w-8 text-primary" />
+            </div>
+            <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">Value Map</span>
           </h1>
-          <p className="text-muted-foreground mt-1">
+          <p className="text-muted-foreground text-lg">
             Aggregated analysis from Extraction {extractionId}
           </p>
         </div>
         
-        <Button variant="outline" asChild>
+        <Button variant="outline" asChild className="hover:shadow-md transition-all duration-200 hover:scale-105">
           <Link to={`/customers/${customerId}/extractions/${extractionId}`}>
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Extraction

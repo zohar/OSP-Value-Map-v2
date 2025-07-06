@@ -334,6 +334,28 @@
   /* Hover utilities */
   .hover-scale:hover { transform: scale(1.02); }
   .hover-lift:hover { transform: translateY(-2px); }
+  
+  /* Accessibility - Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-in,
+    .animate-slide-in-from-top,
+    .hover-lift,
+    .hover-scale,
+    .transition-all,
+    .transition-colors,
+    .transition-transform,
+    .transition-shadow {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+    }
+  }
+  
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .hover-lift:active { transform: translateY(-1px); }
+    .hover-scale:active { transform: scale(1.01); }
+  }
 
   /* Feature Map specific utilities */
   .bg-featureMap-category { background-color: hsl(var(--featureMapCategory)); }

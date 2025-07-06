@@ -36,9 +36,9 @@ export function FeatureMapView() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 animate-fade-in">
       {/* Document Header */}
-      <Card>
+      <Card className="border-l-4 border-l-primary/20 hover:border-l-primary transition-all duration-200 hover:shadow-lg">
         <CardHeader>
           <div className="flex items-start justify-between">
             <div className="flex-1">
