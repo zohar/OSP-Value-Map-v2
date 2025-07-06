@@ -10,7 +10,7 @@ export function useCrawls(customerId: number) {
         .from('crawls')
         .select('*')
         .eq('customer_id', customerId)
-        .order('created_at', { ascending: false });
+        .order('started_at', { ascending: false });
 
       if (error) throw error;
       return data as Crawl[];

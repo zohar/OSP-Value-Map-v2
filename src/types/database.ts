@@ -53,21 +53,22 @@ export interface Document {
 export interface Crawl {
   id: number;
   customer_id: number;
-  url: string;
+  base_url: string;
   status: 'pending' | 'running' | 'completed' | 'failed';
   limit: number;
-  pages_crawled: number;
-  created_at: string;
+  processed_pages: number;
+  started_at: string;
   completed_at: string | null;
   metadata: Record<string, any> | null;
 }
 
 export interface FeatureExtraction {
+  id: number;
   extraction_id: number;
   document_id: number;
   customer_id: number;
   created_at: string;
-  feature_map: FeatureMap | null;
+  results: FeatureMap | null;
 }
 
 export interface ValueMap {

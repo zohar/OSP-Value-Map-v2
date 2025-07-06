@@ -78,8 +78,8 @@ export function FeatureMapView() {
           <CardTitle>Feature Map</CardTitle>
         </CardHeader>
         <CardContent>
-          {featureExtraction.feature_map ? (
-            <FeatureTable featureMap={featureExtraction.feature_map} />
+          {featureExtraction.results ? (
+            <FeatureTable featureMap={featureExtraction.results} />
           ) : (
             <div className="text-center py-8 text-muted-foreground">
               Feature map is being processed...

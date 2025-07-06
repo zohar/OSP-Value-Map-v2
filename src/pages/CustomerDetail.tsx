@@ -194,13 +194,13 @@ export function CustomerDetail() {
                   <CardContent className="p-4">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <h3 className="font-medium">{crawl.url}</h3>
+                        <h3 className="font-medium">{crawl.base_url}</h3>
                         <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
                           <div className="flex items-center gap-1">
                             <Clock className="h-3 w-3" />
-                            {formatDistanceToNow(new Date(crawl.created_at), { addSuffix: true })}
+                            {formatDistanceToNow(new Date(crawl.started_at), { addSuffix: true })}
                           </div>
-                          <span>{crawl.pages_crawled} / {crawl.limit} pages</span>
+                          <span>{crawl.processed_pages} / {crawl.limit} pages</span>
                         </div>
                       </div>
                       <Badge 
