@@ -12,53 +12,57 @@ interface CustomerCardProps {
 export function CustomerCard({ customer }: CustomerCardProps) {
   return (
     <Link to={`/customers/${customer.id}`}>
-      <Card className="hover:shadow-lg transition-all duration-300 cursor-pointer group hover:border-primary/20">
-        <CardHeader className="pb-3">
+      <Card className="relative overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group hover:border-primary/30 hover-lift bg-gradient-to-br from-card to-muted/30">
+        <CardHeader className="pb-4">
           <div className="flex items-center justify-between">
-            <CardTitle className="flex items-center space-x-2">
-              <Building2 className="h-5 w-5 text-primary" />
-              <span className="truncate group-hover:text-primary transition-colors duration-200">{customer.name}</span>
+            <CardTitle className="flex items-center space-x-3">
+              <div className="p-2 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors duration-200">
+                <Building2 className="h-5 w-5 text-primary" />
+              </div>
+              <span className="truncate group-hover:text-primary transition-colors duration-200 font-semibold">{customer.name}</span>
             </CardTitle>
           </div>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground ml-11">
             Created {formatDistanceToNow(new Date(customer.created_at), { addSuffix: true })}
           </p>
         </CardHeader>
         
-        <CardContent className="space-y-3">
-          <div className="grid grid-cols-3 gap-2">
-            <div className="flex items-center space-x-1">
-              <FileText className="h-4 w-4 text-muted-foreground" />
-              <span className="text-sm font-medium">{customer.document_count}</span>
-              <span className="text-xs text-muted-foreground">docs</span>
+        <CardContent className="space-y-4">
+          <div className="grid grid-cols-3 gap-4">
+            <div className="flex flex-col items-center space-y-1 p-3 rounded-lg bg-background/50 group-hover:bg-background/70 transition-colors duration-200">
+              <FileText className="h-5 w-5 text-blue-500" />
+              <span className="text-lg font-bold text-foreground">{customer.document_count}</span>
+              <span className="text-xs text-muted-foreground text-center">Documents</span>
             </div>
             
-            <div className="flex items-center space-x-1">
-              <Zap className="h-4 w-4 text-muted-foreground" />
-              <span className="text-sm font-medium">{customer.extraction_count}</span>
-              <span className="text-xs text-muted-foreground">extractions</span>
+            <div className="flex flex-col items-center space-y-1 p-3 rounded-lg bg-background/50 group-hover:bg-background/70 transition-colors duration-200">
+              <Zap className="h-5 w-5 text-green-500" />
+              <span className="text-lg font-bold text-foreground">{customer.extraction_count}</span>
+              <span className="text-xs text-muted-foreground text-center">Extractions</span>
             </div>
             
-            <div className="flex items-center space-x-1">
-              <Globe className="h-4 w-4 text-muted-foreground" />
-              <span className="text-sm font-medium">{customer.crawl_count}</span>
-              <span className="text-xs text-muted-foreground">crawls</span>
+            <div className="flex flex-col items-center space-y-1 p-3 rounded-lg bg-background/50 group-hover:bg-background/70 transition-colors duration-200">
+              <Globe className="h-5 w-5 text-purple-500" />
+              <span className="text-lg font-bold text-foreground">{customer.crawl_count}</span>
+              <span className="text-xs text-muted-foreground text-center">Crawls</span>
             </div>
           </div>
           
-          <div className="flex flex-wrap gap-1">
+          <div className="flex flex-wrap gap-2 pt-2">
             {customer.document_count > 0 && (
-              <Badge variant="secondary" className="text-xs">
+              <Badge variant="secondary" className="text-xs font-medium bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors">
                 {customer.document_count} Documents
               </Badge>
             )}
             {customer.extraction_count > 0 && (
-              <Badge variant="outline" className="text-xs">
+              <Badge variant="outline" className="text-xs font-medium border-green-200 text-green-700 hover:bg-green-50 transition-colors">
                 {customer.extraction_count} Extractions
               </Badge>
             )}
           </div>
         </CardContent>
+        
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 opacity-30" />
       </Card>
     </Link>
   );

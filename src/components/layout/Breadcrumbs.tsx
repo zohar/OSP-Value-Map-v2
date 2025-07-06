@@ -68,16 +68,16 @@ export function Breadcrumbs() {
   }
 
   return (
-    <nav className="flex items-center space-x-1 text-sm text-muted-foreground">
+    <nav className="flex items-center space-x-1 text-sm text-muted-foreground bg-muted/30 p-3 rounded-lg">
       {breadcrumbs.map((breadcrumb, index) => (
         <div key={breadcrumb.href} className="flex items-center">
-          {index > 0 && <ChevronRight className="h-4 w-4 mx-1" />}
+          {index > 0 && <ChevronRight className="h-4 w-4 mx-2 text-muted-foreground/60" />}
           <Link
             to={breadcrumb.href}
-            className="flex items-center space-x-1 hover:text-foreground transition-colors"
+            className="flex items-center space-x-2 hover:text-foreground transition-all duration-200 px-2 py-1 rounded-md hover:bg-background/50 group"
           >
-            {breadcrumb.icon && <breadcrumb.icon className="h-4 w-4" />}
-            <span>{breadcrumb.label}</span>
+            {breadcrumb.icon && <breadcrumb.icon className="h-4 w-4 group-hover:text-primary transition-colors" />}
+            <span className="font-medium group-hover:text-primary transition-colors">{breadcrumb.label}</span>
           </Link>
         </div>
       ))}

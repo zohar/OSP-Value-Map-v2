@@ -4,11 +4,11 @@ import { Header } from './Header';
 
 export function AppLayout() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background/50 to-muted/20">
       <Header />
-      <div className="container mx-auto px-4 py-6">
+      <div className="container mx-auto px-4 py-8">
         <Breadcrumbs />
-        <main className="mt-6">
+        <main className="mt-8">
           <Outlet />
         </main>
       </div>

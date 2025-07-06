@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    /* Amber Minimal Theme Variables */
+    /* Enhanced Color Scheme */
     --radius: 0.75rem;
     --background: 0 0% 100%;
     --foreground: 20 14.3% 4.1%;
@@ -27,6 +27,26 @@
     --border: 20 5.9% 90%;
     --input: 20 5.9% 90%;
     --ring: 47.9 95.8% 53.1%;
+    
+    /* Enhanced UI Colors */
+    --success: 142 76% 36%;
+    --success-foreground: 138 62% 94%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 48 96% 11%;
+    --info: 221 83% 53%;
+    --info-foreground: 210 40% 98%;
+    
+    /* Gradient Colors */
+    --gradient-primary: linear-gradient(135deg, hsl(47.9 95.8% 53.1%) 0%, hsl(45 93% 47%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(60 4.8% 95.9%) 0%, hsl(20 14.3% 95.1%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(47.9 95.8% 53.1%) 0%, hsl(33 100% 52%) 100%);
+    
+    /* Shadow Colors */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
     
     /* Feature Map Colors */
     --featureMapCategory: 47.9 95.8% 53.1%;
@@ -57,6 +77,26 @@
     --input: 12 6.5% 15.1%;
     --ring: 47.9 95.8% 53.1%;
     
+    /* Enhanced UI Colors - Dark Mode */
+    --success: 142 76% 36%;
+    --success-foreground: 138 62% 94%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 48 96% 11%;
+    --info: 221 83% 53%;
+    --info-foreground: 210 40% 98%;
+    
+    /* Gradient Colors - Dark Mode */
+    --gradient-primary: linear-gradient(135deg, hsl(47.9 95.8% 53.1%) 0%, hsl(45 93% 47%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(12 6.5% 15.1%) 0%, hsl(20 14.3% 15.1%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(47.9 95.8% 53.1%) 0%, hsl(33 100% 52%) 100%);
+    
+    /* Shadow Colors - Dark Mode */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+    
     /* Feature Map Colors - Dark Mode */
     --featureMapCategory: 47.9 95.8% 53.1%;
     --featureMapCategory-foreground: 26 83.3% 14.1%;
@@ -74,21 +114,82 @@
     color: hsl(var(--foreground));
     font-family: 'Inter', system-ui, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Additional component base styles */
+  /* Enhanced typography */
   h1, h2, h3, h4, h5, h6 {
     color: hsl(var(--foreground));
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .text-large {
+    font-size: 1.125rem;
+    line-height: 1.7;
+  }
+  
+  .text-small {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  
+  .text-xs {
+    font-size: 0.75rem;
+    line-height: 1.4;
   }
 
-  /* Form elements base styling */
+  /* Enhanced form elements */
   input, textarea, select {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     border: 1px solid hsl(var(--border));
+    border-radius: calc(var(--radius) - 2px);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+  
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: hsl(var(--ring));
+    box-shadow: 0 0 0 2px hsl(var(--ring) / 0.1);
+  }
+  
+  input::placeholder, textarea::placeholder {
+    color: hsl(var(--muted-foreground));
   }
 
-  /* Button reset */
+  /* Enhanced button styles */
   button {
     background: none;
     border: none;
@@ -97,7 +198,41 @@
     font: inherit;
     cursor: pointer;
     color: inherit;
+    border-radius: var(--radius);
+    transition: all 0.2s ease-in-out;
+    font-weight: 500;
   }
+  
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  /* Link enhancements */
+  a {
+    color: hsl(var(--primary));
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  a:hover {
+    color: hsl(var(--primary) / 0.8);
+  }
+  
+  /* Enhanced spacing utilities */
+  .space-y-1 > * + * { margin-top: 0.25rem; }
+  .space-y-2 > * + * { margin-top: 0.5rem; }
+  .space-y-3 > * + * { margin-top: 0.75rem; }
+  .space-y-4 > * + * { margin-top: 1rem; }
+  .space-y-6 > * + * { margin-top: 1.5rem; }
+  .space-y-8 > * + * { margin-top: 2rem; }
+  
+  .space-x-1 > * + * { margin-left: 0.25rem; }
+  .space-x-2 > * + * { margin-left: 0.5rem; }
+  .space-x-3 > * + * { margin-left: 0.75rem; }
+  .space-x-4 > * + * { margin-left: 1rem; }
+  .space-x-6 > * + * { margin-left: 1.5rem; }
+  .space-x-8 > * + * { margin-left: 2rem; }
 }
 
 @layer utilities {
@@ -118,6 +253,19 @@
   .bg-accent-foreground { background-color: hsl(var(--accent-foreground)); }
   .bg-destructive { background-color: hsl(var(--destructive)); }
   .bg-destructive-foreground { background-color: hsl(var(--destructive-foreground)); }
+  
+  /* Enhanced UI colors */
+  .bg-success { background-color: hsl(var(--success)); }
+  .bg-success-foreground { background-color: hsl(var(--success-foreground)); }
+  .bg-warning { background-color: hsl(var(--warning)); }
+  .bg-warning-foreground { background-color: hsl(var(--warning-foreground)); }
+  .bg-info { background-color: hsl(var(--info)); }
+  .bg-info-foreground { background-color: hsl(var(--info-foreground)); }
+  
+  /* Gradient utilities */
+  .bg-gradient-primary { background: var(--gradient-primary); }
+  .bg-gradient-secondary { background: var(--gradient-secondary); }
+  .bg-gradient-accent { background: var(--gradient-accent); }
 
   .text-background { color: hsl(var(--background)); }
   .text-foreground { color: hsl(var(--foreground)); }
@@ -135,6 +283,14 @@
   .text-accent-foreground { color: hsl(var(--accent-foreground)); }
   .text-destructive { color: hsl(var(--destructive)); }
   .text-destructive-foreground { color: hsl(var(--destructive-foreground)); }
+  
+  /* Enhanced text colors */
+  .text-success { color: hsl(var(--success)); }
+  .text-success-foreground { color: hsl(var(--success-foreground)); }
+  .text-warning { color: hsl(var(--warning)); }
+  .text-warning-foreground { color: hsl(var(--warning-foreground)); }
+  .text-info { color: hsl(var(--info)); }
+  .text-info-foreground { color: hsl(var(--info-foreground)); }
 
   .border-background { border-color: hsl(var(--background)); }
   .border-foreground { border-color: hsl(var(--foreground)); }
@@ -156,6 +312,28 @@
   .border-input { border-color: hsl(var(--input)); }
   .ring-ring { --tw-ring-color: hsl(var(--ring)); }
   .ring-offset-background { --tw-ring-offset-color: hsl(var(--background)); }
+  
+  /* Enhanced border colors */
+  .border-success { border-color: hsl(var(--success)); }
+  .border-warning { border-color: hsl(var(--warning)); }
+  .border-info { border-color: hsl(var(--info)); }
+  
+  /* Shadow utilities */
+  .shadow-sm { box-shadow: var(--shadow-sm); }
+  .shadow { box-shadow: var(--shadow); }
+  .shadow-md { box-shadow: var(--shadow-md); }
+  .shadow-lg { box-shadow: var(--shadow-lg); }
+  .shadow-xl { box-shadow: var(--shadow-xl); }
+  
+  /* Transition utilities */
+  .transition-all { transition: all 0.2s ease-in-out; }
+  .transition-colors { transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out; }
+  .transition-transform { transition: transform 0.2s ease-in-out; }
+  .transition-shadow { transition: box-shadow 0.2s ease-in-out; }
+  
+  /* Hover utilities */
+  .hover-scale:hover { transform: scale(1.02); }
+  .hover-lift:hover { transform: translateY(-2px); }
 
   /* Feature Map specific utilities */
   .bg-featureMap-category { background-color: hsl(var(--featureMapCategory)); }
