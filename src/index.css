@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 15%;
+    --primary: 38 92% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 0 0% 15%;
+    --muted: 210 40% 98%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 48 100% 96%;
+    --accent-foreground: 0 0% 15%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89%;
+    --ring: 38 92% 50%;
+    
+    /* Feature Map Colors */
+    --featureMapCategory: 38 92% 40%;
+    --featureMapCategory-foreground: 0 0% 100%;
+    --featureMapArea: 48 100% 60%;
+    --featureMapArea-foreground: 0 0% 15%;
+    --featureMapFeature: 210 40% 98%;
+  }
+}
