@@ -12,12 +12,12 @@ interface CustomerCardProps {
 export function CustomerCard({ customer }: CustomerCardProps) {
   return (
     <Link to={`/customers/${customer.id}`}>
-      <Card className="hover:shadow-md transition-shadow cursor-pointer">
+      <Card className="hover:shadow-lg transition-all duration-300 cursor-pointer group hover:border-primary/20">
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
             <CardTitle className="flex items-center space-x-2">
               <Building2 className="h-5 w-5 text-primary" />
-              <span className="truncate">{customer.name}</span>
+              <span className="truncate group-hover:text-primary transition-colors duration-200">{customer.name}</span>
             </CardTitle>
           </div>
           <p className="text-sm text-muted-foreground">
