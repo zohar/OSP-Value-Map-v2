@@ -75,4 +75,27 @@
     font-family: 'Inter', system-ui, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+
+  /* Additional component base styles */
+  h1, h2, h3, h4, h5, h6 {
+    color: hsl(var(--foreground));
+  }
+
+  /* Form elements base styling */
+  input, textarea, select {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    border: 1px solid hsl(var(--border));
+  }
+
+  /* Button reset */
+  button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    cursor: pointer;
+    color: inherit;
+  }
 }

@@ -11,7 +11,7 @@ import { FileText, Calendar, ExternalLink } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 
 export function FeatureMapView() {
-  const { customerId, extractionId, documentId } = useParams<{
+  const { extractionId, documentId } = useParams<{
     customerId: string;
     extractionId: string;
     documentId: string;

@@ -34,3 +34,37 @@ The `@tweakcn/amber-minimal` package was referenced in `src/index.css` but doesn
 
 ### Status
 ✅ **RESOLVED** - The CSS import error is fixed and the application should now be able to process the CSS files without errors.
+
+---
+
+## Node.js Version Compatibility Issue
+
+### Problem Summary
+After fixing the CSS import error, a new error appeared:
+```
+TypeError: crypto.hash is not a function
+```
+
+### Root Cause
+The issue was caused by Node.js version inconsistency:
+- User's system: Node.js v24.3.0 (compatible)
+- Development environment: Node.js v20.5.1 (incompatible with Vite 7.0.2)
+
+### Solution Implemented
+1. **Added .nvmrc file**: Created `.nvmrc` with `24.3.0` to lock Node.js version
+2. **Cleared dependencies**: Removed `node_modules` and `package-lock.json`
+3. **Reinstalled dependencies**: Ran `npm install` to rebuild with correct Node.js version
+4. **Version control**: Committed .nvmrc file for team consistency
+
+### Changes Made
+- **/.nvmrc**: Added file specifying Node.js version 24.3.0
+- **Commit created**: 8eb27aa with .nvmrc file
+
+### Next Steps
+For the user to resolve the crypto.hash error in their terminal:
+1. Run `nvm use` (will use version from .nvmrc)
+2. Run `npm install` to ensure dependencies are built with correct Node.js version
+3. Run `npm run dev` to test the application
+
+### Status
+🔄 **PARTIALLY RESOLVED** - .nvmrc file added, but crypto.hash error persists due to terminal session still using old Node.js version. User needs to switch to Node.js v24.3.0 in their terminal.
