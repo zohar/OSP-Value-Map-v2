@@ -28,6 +28,9 @@ export function ExtractionDetail() {
   if (error) return <ErrorState error={error} />;
   if (!extraction) return <ErrorState error={new Error('Extraction not found')} />;
 
+  // Handle case where documents array might be null/undefined
+  const safeDocuments = extraction.documents || [];
+
   return (
     <div className="space-y-8 animate-fade-in">
       <div className="flex justify-between items-start">
@@ -58,13 +61,13 @@ export function ExtractionDetail() {
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="text-center p-4 border rounded-lg">
-              <div className="text-2xl font-bold">{extraction.documents.length}</div>
+              <div className="text-2xl font-bold">{safeDocuments.length}</div>
               <div className="text-sm text-muted-foreground">Documents Processed</div>
             </div>
             
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold">
-                {extraction.documents.filter(doc => doc.feature_extraction).length}
+                {safeDocuments.filter(doc => doc?.feature_extraction).length}
               </div>
               <div className="text-sm text-muted-foreground">Feature Maps Generated</div>
             </div>

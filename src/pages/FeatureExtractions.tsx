@@ -24,6 +24,9 @@ export function FeatureExtractions() {
   if (error) return <ErrorState error={error} />;
   if (!customer) return <ErrorState error={new Error('Customer not found')} />;
 
+  // Handle case where extractions is null/undefined
+  const safeExtractions = extractions || [];
+
   return (
     <div className="space-y-8 animate-fade-in">
       <div className="flex justify-between items-start">
@@ -40,7 +43,7 @@ export function FeatureExtractions() {
         </Button>
       </div>
 
-      {extractions?.length === 0 ? (
+      {safeExtractions.length === 0 ? (
         <EmptyState
           title="No feature extractions yet"
           description="Create your first feature extraction to analyze documents and generate insights"
@@ -54,7 +57,7 @@ export function FeatureExtractions() {
         />
       ) : (
         <div className="grid gap-6">
-          {extractions?.map((extraction) => (
+          {safeExtractions.map((extraction) => (
             <Card key={extraction.extraction_id} className="hover:shadow-xl transition-all duration-300 hover-lift group border-l-4 border-l-primary/20 hover:border-l-primary bg-gradient-to-br from-card to-muted/20">
               <CardHeader className="pb-4">
                 <div className="flex items-center justify-between">
@@ -80,14 +83,14 @@ export function FeatureExtractions() {
                   </div>
                   <div className="flex items-center gap-2">
                     <FileText className="h-4 w-4 text-blue-500" />
-                    <span className="font-medium">{extraction.documents.length} documents</span>
+                    <span className="font-medium">{extraction.documents?.length || 0} documents</span>
                   </div>
                 </div>
               </CardHeader>
               
               <CardContent className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {extraction.documents.slice(0, 6).map((document) => (
+                  {(extraction.documents || []).slice(0, 6).map((document) => (
                     <div
                       key={document.id}
                       className="p-4 border rounded-lg bg-background/50 hover:bg-background/80 transition-all duration-200 hover:shadow-sm group"
@@ -103,10 +106,10 @@ export function FeatureExtractions() {
                       </div>
                     </div>
                   ))}
-                  {extraction.documents.length > 6 && (
+                  {(extraction.documents?.length || 0) > 6 && (
                     <div className="p-4 border rounded-lg bg-muted/50 flex items-center justify-center hover:bg-muted/70 transition-colors">
                       <span className="text-sm text-muted-foreground font-medium">
-                        +{extraction.documents.length - 6} more
+                        +{(extraction.documents?.length || 0) - 6} more
                       </span>
                     </div>
                   )}
