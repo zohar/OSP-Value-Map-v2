@@ -1,5 +1,5 @@
 import { useLocation, Link } from 'react-router-dom';
-import { ChevronRight, Home } from 'lucide-react';
+import { ChevronRight, Home, Sparkles } from 'lucide-react';
 import { useCustomer } from '@/hooks/useCustomers';
 import { useExtraction } from '@/hooks/useExtractions';
 import { useDocument } from '@/hooks/useDocuments';
@@ -68,16 +68,16 @@ export function Breadcrumbs() {
   }
 
   return (
-    <nav className="flex items-center space-x-1 text-sm text-muted-foreground bg-muted/30 p-3 rounded-lg">
+    <nav className="flex items-center space-x-2 text-sm glass p-4 rounded-xl shadow-lg">
       {breadcrumbs.map((breadcrumb, index) => (
         <div key={breadcrumb.href} className="flex items-center">
-          {index > 0 && <ChevronRight className="h-4 w-4 mx-2 text-muted-foreground/60" />}
+          {index > 0 && <ChevronRight className="h-4 w-4 mx-3 text-muted-foreground/60" />}
           <Link
             to={breadcrumb.href}
-            className="flex items-center space-x-2 hover:text-foreground transition-all duration-200 px-2 py-1 rounded-md hover:bg-background/50 group"
+            className="flex items-center space-x-2 hover:text-primary transition-all duration-200 px-3 py-2 rounded-lg hover:bg-primary/5 group font-medium"
           >
-            {breadcrumb.icon && <breadcrumb.icon className="h-4 w-4 group-hover:text-primary transition-colors" />}
-            <span className="font-medium group-hover:text-primary transition-colors">{breadcrumb.label}</span>
+            {breadcrumb.icon && <breadcrumb.icon className="h-4 w-4 group-hover:text-accent transition-colors" />}
+            <span className="group-hover:text-primary transition-colors">{breadcrumb.label}</span>
           </Link>
         </div>
       ))}

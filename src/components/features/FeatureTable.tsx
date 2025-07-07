@@ -1,6 +1,7 @@
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import type { FeatureMap } from '@/types/database';
 import React from 'react';
+import { Layers, Target, Zap } from 'lucide-react';
 
 interface FeatureTableProps {
   featureMap: FeatureMap;
@@ -9,18 +10,18 @@ interface FeatureTableProps {
 export function FeatureTable({ featureMap }: FeatureTableProps) {
   if (!featureMap?.featuresMap || !Array.isArray(featureMap.featuresMap) || featureMap.featuresMap.length === 0) {
     return (
-      <div className="text-center py-16 text-muted-foreground animate-fade-in">
-        <div className="p-4 rounded-full bg-muted/30 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-          <span className="text-2xl">📊</span>
+      <div className="text-center py-24 text-muted-foreground animate-fade-in">
+        <div className="p-8 rounded-2xl bg-gradient-surface w-24 h-24 mx-auto mb-6 flex items-center justify-center shadow-lg border border-border/50">
+          <Zap className="h-12 w-12 text-muted-foreground/60" />
         </div>
-        <p className="text-lg font-medium">No feature map data available</p>
-        <p className="text-sm mt-2">Feature extraction may still be processing or no features were found.</p>
+        <h3 className="text-2xl font-bold text-foreground mb-3">No feature map data available</h3>
+        <p className="text-lg leading-relaxed max-w-md mx-auto">Feature extraction may still be processing or no features were found.</p>
       </div>
     );
   }
 
   return (
-    <div className="border rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-background to-muted/20">
+    <div className="rounded-2xl overflow-hidden shadow-xl bg-gradient-surface border border-border/50">
       <Table>
         <TableBody>
           {featureMap.featuresMap.map((category, categoryIndex) => {
@@ -31,14 +32,16 @@ export function FeatureTable({ featureMap }: FeatureTableProps) {
             
             return (
               <React.Fragment key={categoryIndex}>
-                <TableRow className="bg-gradient-to-r from-primary/10 to-primary/20 hover:from-primary/15 hover:to-primary/25 transition-all duration-200 border-b-2 border-primary/20">
-                  <TableCell className="font-bold text-primary w-48 py-4 px-6">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-lg">Feature Category</span>
+                <TableRow className="bg-feature-category hover:bg-feature-category/90 transition-all duration-300 border-b-2 border-primary/20 group">
+                  <TableCell className="font-bold text-feature-category-foreground w-64 py-6 px-8">
+                    <div className="flex items-center space-x-3">
+                      <div className="p-2 bg-primary-foreground/20 rounded-lg group-hover:scale-110 transition-transform duration-200">
+                        <Layers className="w-5 h-5" />
+                      </div>
+                      <span className="text-lg font-bold">Feature Category</span>
                     </div>
                   </TableCell>
-                  <TableCell className="text-foreground font-semibold text-lg py-4">
+                  <TableCell className="text-feature-category-foreground font-bold text-xl py-6">
                     {category.category}
                   </TableCell>
                 </TableRow>
@@ -51,14 +54,16 @@ export function FeatureTable({ featureMap }: FeatureTableProps) {
                   
                   return (
                     <React.Fragment key={`${categoryIndex}-${areaIndex}`}>
-                      <TableRow className="bg-gradient-to-r from-blue-500/5 to-blue-500/10 hover:from-blue-500/10 hover:to-blue-500/15 transition-all duration-200 border-b border-blue-200/30">
-                        <TableCell className="pl-8 font-semibold text-blue-700 py-3">
-                          <div className="flex items-center space-x-2">
-                            <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
-                            <span>Feature Area</span>
+                      <TableRow className="bg-feature-area hover:bg-feature-area/90 transition-all duration-300 border-b border-accent/30 group">
+                        <TableCell className="pl-12 font-semibold text-feature-area-foreground py-4">
+                          <div className="flex items-center space-x-3">
+                            <div className="p-1.5 bg-accent-foreground/20 rounded-md group-hover:scale-110 transition-transform duration-200">
+                              <Target className="w-4 h-4" />
+                            </div>
+                            <span className="font-semibold">Feature Area</span>
                           </div>
                         </TableCell>
-                        <TableCell className="text-foreground font-medium py-3">
+                        <TableCell className="text-feature-area-foreground font-semibold text-lg py-4">
                           {area.name}
                         </TableCell>
                       </TableRow>
@@ -72,15 +77,17 @@ export function FeatureTable({ featureMap }: FeatureTableProps) {
                         return (
                           <TableRow 
                             key={`${categoryIndex}-${areaIndex}-${featureIndex}`}
-                            className="bg-background hover:bg-muted/30 transition-all duration-200 border-b border-border/50 group"
+                            className="bg-feature-item hover:bg-muted/50 transition-all duration-300 border-b border-border/30 group"
                           >
-                            <TableCell className="pl-16 text-muted-foreground py-3">
-                              <div className="flex items-center space-x-2">
-                                <div className="w-1 h-1 bg-muted-foreground rounded-full group-hover:bg-primary transition-colors"></div>
-                                <span className="text-sm font-medium">Feature</span>
+                            <TableCell className="pl-20 text-feature-item-foreground py-4">
+                              <div className="flex items-center space-x-3">
+                                <div className="w-2 h-2 bg-muted-foreground/60 rounded-full group-hover:bg-accent group-hover:scale-125 transition-all duration-200"></div>
+                                <span className="text-sm font-medium text-muted-foreground">Feature</span>
                               </div>
                             </TableCell>
-                            <TableCell className="text-foreground py-3 group-hover:text-primary transition-colors">{feature}</TableCell>
+                            <TableCell className="text-feature-item-foreground py-4 group-hover:text-foreground transition-colors font-medium">
+                              {feature}
+                            </TableCell>
                           </TableRow>
                         );
                       })}

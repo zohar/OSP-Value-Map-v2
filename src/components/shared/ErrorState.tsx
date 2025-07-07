@@ -1,4 +1,4 @@
-import { AlertTriangle, RefreshCw, Database, Wifi } from 'lucide-react';
+import { AlertTriangle, RefreshCw, Database, Wifi, FileX } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface ErrorStateProps {
@@ -30,32 +30,47 @@ export function ErrorState({ error, onRetry, title, description }: ErrorStatePro
     ? "The requested data could not be found. It may have been deleted or doesn't exist yet."
     : "An unexpected error occurred. Please try again.";
     
-  const icon = isRelationshipError
-    ? <Database className="h-12 w-12 text-warning mb-4" />
+  const IconComponent = isRelationshipError
+    ? Database
     : isNetworkError
-    ? <Wifi className="h-12 w-12 text-destructive mb-4" />
-    : <AlertTriangle className="h-12 w-12 text-destructive mb-4" />;
+    ? Wifi
+    : isNotFoundError
+    ? FileX
+    : AlertTriangle;
+    
+  const iconColor = isRelationshipError
+    ? "text-warning"
+    : isNetworkError
+    ? "text-destructive"
+    : isNotFoundError
+    ? "text-info"
+    : "text-destructive";
 
   return (
-    <div className="flex flex-col items-center justify-center py-16 text-center animate-fade-in">
-      {icon}
-      <h3 className="text-xl font-semibold mb-3">{title || defaultTitle}</h3>
-      <p className="text-muted-foreground mb-4 max-w-md leading-relaxed">
+    <div className="flex flex-col items-center justify-center py-24 text-center animate-fade-in">
+      <div className="mb-8 p-6 rounded-2xl bg-gradient-surface shadow-lg border border-border/50">
+        <IconComponent className={`h-16 w-16 ${iconColor}`} />
+      </div>
+      
+      <h3 className="text-3xl font-bold mb-4 text-foreground">{title || defaultTitle}</h3>
+      <p className="text-muted-foreground mb-8 max-w-lg text-lg leading-relaxed">
         {description || defaultDescription}
       </p>
+      
       {error.message && (
-        <details className="mb-6 max-w-md">
-          <summary className="text-sm text-muted-foreground cursor-pointer hover:text-foreground transition-colors">
+        <details className="mb-8 max-w-2xl group">
+          <summary className="text-sm text-muted-foreground cursor-pointer hover:text-foreground transition-colors font-medium px-4 py-2 rounded-lg hover:bg-muted/30">
             Show technical details
           </summary>
-          <p className="text-xs text-muted-foreground mt-2 font-mono bg-muted p-3 rounded border break-words text-left">
+          <div className="mt-4 text-xs text-muted-foreground font-mono bg-muted/50 p-4 rounded-lg border border-border/30 text-left break-words">
             {error.message}
-          </p>
+          </div>
         </details>
       )}
+      
       {onRetry && !isNotFoundError && (
-        <Button onClick={onRetry} variant="outline" className="hover:shadow-md transition-all duration-200">
-          <RefreshCw className="h-4 w-4 mr-2" />
+        <Button onClick={onRetry} variant="outline" size="lg" className="hover:shadow-lg transition-all duration-200">
+          <RefreshCw className="h-5 w-5 mr-2" />
           Try Again
         </Button>
       )}
